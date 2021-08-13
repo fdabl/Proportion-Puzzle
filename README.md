@@ -1,2 +1,2 @@
 # A Puzzle of Proportions
-This repository contains code to reproduce all analyses and figures in Dablander, F., Huth, K., Gronau, Q. F., Etz, A., & Wagenmakers, E.-J. (2021). A Puzzle of Proportions: Popular Bayesian Tests Can Yield Dramatically Different Conclusions.
+This repository contains code to reproduce all analyses and figures in Dablander, F., Huth, K., Gronau, Q. F., Etz, A., & Wagenmakers, E.-J. ([2021](https://arxiv.org/abs/2108.04909)). A Puzzle of Proportions: Popular Bayesian Tests Can Yield Dramatically Different Conclusions.
