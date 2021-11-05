@@ -174,14 +174,12 @@ plot(
   cex.axis = cex.axis, main = expression('Prior distributions for' ~ eta)
 )
 
-polygon(
-  c(x, 1, 0), c(dlogspline(x, f1_lt$eta), 0, 0),
-  col = adjustcolor(cols[2], 0.50), border = NA
-)
+c1 <- adjustcolor(cols[1], 0.50)
+c2 <- adjustcolor(cols[2], 0.50)
 
 polygon(
-  c(x, 1, 0), c(dlogspline(x, f2_lt$eta), 0, 0),
-  col = adjustcolor(cols[2], 0.50), border = NA, density = 50
+  c(x, 1, 0), c(dlogspline(x, f1_lt$eta), 0, 0),
+  col = adjustcolor(cols[2], 0.50), border = NA,
 )
 
 polygon(
@@ -190,8 +188,13 @@ polygon(
 )
 
 polygon(
+  c(x, 1, 0), c(dlogspline(x, f2_lt$eta), 0, 0),
+  col = adjustcolor(cols[2], 0.50), border = NA, density = 25, angle = 90
+)
+
+polygon(
   c(x, 1, 0), c(f2_ib, 0, 0),
-  col = adjustcolor(cols[1], 0.50), border = NA, density = 50
+  col = adjustcolor(cols[1], 0.50), border = NA, density = 25, angle = 180
 )
 
 axis(1, cex.axis = cex.axis, at = seq(-1, 1, 0.5))
@@ -205,8 +208,9 @@ legend(
     expression('a = 1'),
     expression('a = 2')
   ),
-  fill = rep(cols[2:1], each = 2), bty = 'n', cex = 1.5,
-  density = c(100, 50, 100, 50),
+  fill = rep(c(c2, c1), each = 2), bty = 'n', cex = 1.5,
+  density = c(100, 25, 100, 25),
+  angle = c(0, 90, 180, 0),
   y.intersp = 1.25
 )
 
@@ -233,11 +237,6 @@ polygon(
   c(x, 1, 0), c(dnorm(x, 0, 1), 0, 0), col = adjustcolor(cols[2], 0.50), border = NA
 )
 
-polygon(
-  c(x, 1, 0), c(dnorm(x, 0, 2), 0, 0),
-  col = adjustcolor(cols[2], 0.50), border = NA, density = 50
-)
-
 y1fpsi <- fpsi(x[x != 0])
 y2fpsi <- dlogspline(x, fpsi2_dens)
 
@@ -247,8 +246,13 @@ polygon(
 )
 
 polygon(
+  c(x, 1, 0), c(dnorm(x, 0, 2), 0, 0),
+  col = adjustcolor(cols[2], 0.50), border = NA, density = 25, angle = 90
+)
+
+polygon(
   c(x, 1, 0), c(y2fpsi, 0, 0),
-  col = adjustcolor(cols[1], 0.50), border = NA, density = 50
+  col = adjustcolor(cols[1], 0.50), border = NA, density = 25, angle = 180
 )
 
 axis(1, cex.axis = cex.axis, at = seq(-8, 8, 4))
@@ -262,9 +266,11 @@ legend(
     expression('a = 1'),
     expression('a = 2')
   ),
-  fill = rep(cols[2:1], each = 2), bty = 'n', cex = 1.5,
-  density = c(100, 50, 100, 50),
-  y.intersp = 1.25
+  fill = rep(c(c2, c1), each = 2), bty = 'n', cex = 1.5,
+  # density = c(100, 50, 100, 50),
+  y.intersp = 1.25,
+  density = c(100, 25, 100, 25),
+  angle = c(0, 90, 180, 0)
 )
 
 
@@ -307,13 +313,14 @@ polygon(
 
 polygon(
   c(theta, 1, 0), c(y2, 0, 0),
-  col = adjustcolor(cols[2], 0.50), border = NA, density = 50
+  col = adjustcolor(cols[2], 0.50), border = NA, density = 25, angle = 90
 )
 
 polygon(
   c(theta, 1, 0), c(dbeta(theta, 2, 2), 0, 0),
-  col = adjustcolor(cols[1], 0.50), border = NA, density = 50
+  col = adjustcolor(cols[1], 0.50), border = NA, density = 25, angle = 180
 )
+
 axis(1, cex.axis = cex.axis)
 axis(2, las = 2, cex.axis = cex.axis)
 legend(
@@ -324,9 +331,11 @@ legend(
     expression('a = 1'),
     expression('a = 2')
   ),
-  fill = rep(cols[2:1], each = 2), bty = 'n', cex = 1.5,
-  density = c(100, 50, 100, 50),
-  y.intersp = 1.25
+  fill = rep(c(c2, c1), each = 2), bty = 'n', cex = 1.5,
+  # density = c(100, 50, 100, 50),
+  y.intersp = 1.25,
+  density = c(100, 25, 100, 25),
+  angle = c(0, 90, 180, 0)
 )
 dev.off()
 
@@ -403,7 +412,7 @@ layout(mat = layout.matrix, heights = c(2, 2), widths = c(2, 2))
 
 par(mar = c(5.1, 4.5, 4.1, 2.1))
 plot(
-  seq(1, 39), exp(-bfindep_dat[, 1]), pch = 20, axes = FALSE, cex = 1.5, log = 'y',
+  seq(1, 39), exp(-bfindep_dat[, 1]), pch = 18, axes = FALSE, cex = 1.4, log = 'y',
   xlab = 'Study ID', ylab = '', ylim = c(1, 200), col = cols[1],
   main = 'Bayes factors across studies', font.main = 1,
   cex.main = cex.main, cex.lab = cex.lab
@@ -413,7 +422,7 @@ axis(2, las = 2, cex.axis = cex.axis, at = c(1, 10, 100, 200))
 
 for (i in seq(2, 100)) {
   points(
-    exp(-bfindep_dat[, i]), pch = 20, cex = 1.5,
+    exp(-bfindep_dat[, i]), pch = 18, cex = 1.4,
     col = cols_indep[i]
   )
 }
@@ -433,7 +442,7 @@ off <- 65
 
 cexx <- 1
 text(26.5, 200, 'IB Approach', cex = cexx)
-points(points_x, points_y, pch = 20, cex = 2, col = cols_indep)
+points(points_x, points_y, pch = 18, cex = 1.8, col = cols_indep)
 points(points_x, points_y - off, pch = 20, cex = 2, col = cols_dep)
 text(26.5, 200 - off, 'LT Approach', cex = cexx)
 
@@ -453,8 +462,12 @@ mtext(text = expression(theta[2]), side = 2, line = 2.5, las = 1, cex = 1.5)
 abline(a = 0, b = 1, col = 'gray66', lty = 1)
 
 points_col <- rep('black', 39)
+points_shape <- rep(20, 39)
+points_cex <- rep(1, 39)
 points_col[seq(12)] <- cols[2]
-points(dat$y1n1, dat$y2n2, pch = 20, col = points_col)
+points_shape[seq(12)] <- 17
+points_cex[seq(12)] <- 0.80
+points(dat$y1n1, dat$y2n2, pch = points_shape, col = points_col, cex = points_cex)
 
 offset_x <- rep(0.0095, 39)
 offset_x[seq(9)] <- offset_x[10] * 3/4
@@ -479,7 +492,7 @@ offset_y[19] <- offset_y[19] * 2
 offset_y[14] <- offset_y[14] * 3
 offset_y[37] <- -offset_y[37] * 3
 
-points(dat$y1n1, dat$y2n2, pch = 20, col = points_col)
+points(dat$y1n1, dat$y2n2, pch = points_shape, col = points_col, cex = points_cex)
 text(dat$y1n1 + offset_x, dat$y2n2 + offset_y, seq(39), cex = 0.5, col = points_col)
 
 par(mar = c(5.1, 4.1, 4.1, 2.1))
@@ -492,7 +505,7 @@ plot_joint_prior(
   cex_lab = 1.5, cex.main = cex.main, cex.axis = cex.axis, zlim = zlim
 )
 abline(a = 0, b = 1, col = 'gray66', lty = 1)
-points(dat$y1n1, dat$y2n2, pch = 20, col = points_col)
+points(dat$y1n1, dat$y2n2, pch = points_shape, col = points_col, cex = points_cex)
 text(dat$y1n1 + offset_x, dat$y2n2 + offset_y, seq(39), cex = 0.5, col = points_col)
 dev.off()
 
@@ -611,13 +624,13 @@ plot_posterior <- function(post, type = 'psi') {
   }
   
   plot(
-    ids, post[indices[1], ], pch = 20, axes = FALSE, cex = 1.5,
+    ids, post[indices[1], ], pch = 18, axes = FALSE, cex = 1.4,
     xlab = xlab, ylab = '', col = cols[1], ylim = ylim,
     main = main, font.main = 1, cex.main = cex.main, cex.lab = cex.lab
   )
   
   lines(c(1, 39), c(0, 0), lty = 2, col = 'gray76')
-  points(ids, post[indices[1], ], pch = 20, cex = 1.5, col = cols[1])
+  points(ids, post[indices[1], ], pch = 18, cex = 1.4, col = cols[1])
   
   arrows(
     x0 = ids, x1 = ids, y0 = post[indices[3], ], y1 = post[indices[4], ],
@@ -652,7 +665,7 @@ mtext(
 legend(
   'topright',
   legend = c('IB Approach', 'LT Approach'),
-  col = c(cols[1], cols[2]), pch = 20, bty = 'n', cex = 1,
+  col = c(cols[1], cols[2]), pch = c(18, 20), bty = 'n', cex = 1, pt.cex = 1.5,
   y.intersp = 1.25, lty = 1
 )
 
