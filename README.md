@@ -1,2 +1,4 @@
 # A Puzzle of Proportions
 This repository contains code to reproduce all analyses and figures in Dablander, F., Huth, K., Gronau, Q. F., Etz, A., & Wagenmakers, E.-J. ([2021](https://arxiv.org/abs/2108.04909)). A Puzzle of Proportions: Popular Bayesian Tests Can Yield Dramatically Different Conclusions.
+
+This work, including all figures, is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. If you use the data, please cite Hoekstra, R., Monden, R., van Ravenzwaaij, D., & Wagenmakers, E.-J. ([2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195474)). <br><br><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
